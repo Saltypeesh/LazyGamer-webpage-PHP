@@ -26,7 +26,7 @@
                     </div>
                 </div>
             @else
-                <div style="height: 300px">No Listing found</div>
+                <div style="height: 300px">No Listing found123</div>
             @endif
 
         </div>
