@@ -126,5 +126,6 @@ class FeedbacksController extends Controller
 
         $feedback->delete();
         return back()->with('message', 'Feedback deleted successfully!');
+        //
     }
 }
