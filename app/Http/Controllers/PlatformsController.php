@@ -12,7 +12,7 @@ class PlatformsController extends Controller
      */
     public function index()
     {
-        return view('categories.index', ['category' => Platform::latest()->paginate(6)]);
+        return view('platforms.index', ['platform' => Platform::latest()->paginate(6)]);
     }
 
     /**
@@ -20,7 +20,7 @@ class PlatformsController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('platforms.create');
     }
 
     /**
@@ -28,45 +28,45 @@ class PlatformsController extends Controller
      */
     public function store(Request $request)
     {
-        $category = $request->validate(['categoryName' => 'required|string|max:50']);
-        Platform::create($category);
-        return redirect('/categories')->with('message', 'Category created successfully!');
+        $platform = $request->validate(['platname' => 'required|string|max:50']);
+        Platform::create($platform);
+        return redirect('/platforms')->with('message', 'Platform created successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Platform $category)
+    public function show(Platform $platform)
     {
-        return view('categories.view', ['category' => $category]);
+        return view('platforms.view', ['platform' => $platform]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Platform $category)
+    public function edit(Platform $platform)
     {
-        return view('categories.edit', ['category' => $category]);
+        return view('platforms.edit', ['platform' => $platform]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Platform $category)
+    public function update(Request $request, Platform $platform)
     {
-        $category = $request->validate([
-            'categoryName' => 'required|string|max:50'
+        $platform = $request->validate([
+            'platname' => 'required|string|max:50'
         ]);
-        Platform::create($category);
-        return back()->with('message', 'Category updated successfully!');
+        Platform::create($platform);
+        return back()->with('message', 'Platform updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Platform $category)
+    public function destroy(Platform $platform)
     {
-        $category->delete();
-        return back()->with('message', 'Category updated successfully!');
+        $platform->delete();
+        return back()->with('message', 'Platform updated successfully!');
     }
 }
