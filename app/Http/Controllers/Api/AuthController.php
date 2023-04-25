@@ -98,7 +98,7 @@ class AuthController extends Controller
         Auth::user()->currentAccessToken()->delete();
         $user->delete();
 
-        //
+        
         return $this->success([
             'message' => 'Account has been successfully deleted!'
         ]);
