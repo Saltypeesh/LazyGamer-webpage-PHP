@@ -30,15 +30,16 @@ class OrdersController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'user_id' => 'required',
             'cart_id' => 'required'
         ]);
+        $formFields['user_id'] = auth()->id();
         
         Order::create($formFields);
 
-        $user = User::find(auth()->id());
-        $listing = Listing::find($request->listing_id);
-        $listing->carts()->detach($user);
+        // $user = User::find(auth()->id());
+        // $listing = Listing::find($request->listing_id);
+        // $listing->carts()->detach($user);
+        
         
         return redirect()->route('home')->with('message', 'Order has been placed!');
     }
