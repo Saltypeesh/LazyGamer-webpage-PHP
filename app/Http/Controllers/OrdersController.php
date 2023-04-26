@@ -16,7 +16,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::where('user_id', auth()->id())->get();
 
         return view('users.order', compact('orders'));
     }
@@ -44,13 +44,13 @@ class OrdersController extends Controller
             'listing_id' => 'required',
             'amount' => 'required'
         ]);
-        
+
         Order::create($formFields);
 
         $user = User::find(auth()->id());
         $listing = Listing::find($request->listing_id);
         $listing->carts()->detach($user);
-        
+
         return redirect()->route('home')->with('message', 'Order has been placed!');
     }
 

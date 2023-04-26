@@ -30,23 +30,21 @@
             <tbody>
                 @if ($orders->count() != 0)
                     @foreach ($orders as $order)
-                        @if ($order->users->id == auth()->user()->id)
-                            <tr>
-                                <td class="d-none d-md-table-cell"><a href="/listings/{{ $order->listings->id }}">
-                                        <img class="w-100"
-                                            src="{{ $order->listings->banner ? asset('storage/' . $order->listings->banner) : asset('/images/no-image.jpg') }}"
-                                            alt="">
-                                    </a></td>
-                                <td><a href="/listings/{{ $order->listings->id }}">{{ $order->listings->title }}</a></td>
-                                <td>{{ $order->listings->price }}</td>
-                                <td>{{ $order->amount }}</td>
-                            </tr>
+                        <tr>
+                            <td class="d-none d-md-table-cell"><a href="/listings/{{ $order->listings->id }}">
+                                    <img class="w-100"
+                                        src="{{ $order->listings->banner ? asset('storage/' . $order->listings->banner) : asset('/images/no-image.jpg') }}"
+                                        alt="">
+                                </a></td>
+                            <td><a href="/listings/{{ $order->listings->id }}">{{ $order->listings->title }}</a></td>
+                            <td>{{ $order->listings->price }}</td>
+                            <td>{{ $order->amount }}</td>
+                        </tr>
 
-                            @php
-                                $total += $order->listings->price * $order->amount;
-                                $exist = true;
-                            @endphp
-                        @endif
+                        @php
+                            $total += $order->listings->price * $order->amount;
+                            $exist = true;
+                        @endphp
                     @endforeach
                 @else
                     <tr>

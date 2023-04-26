@@ -15,11 +15,6 @@ class ListingsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => ['home', 'index', 'show']]);
-    }
-
     public function home()
     {
         return view('listings.home', [

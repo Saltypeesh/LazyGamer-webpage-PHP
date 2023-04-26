@@ -23,9 +23,10 @@ use App\Http\Controllers\FeedbacksController;
 Auth::routes();
 
 Route::get('/feedbacks', [FeedbacksController::class, 'index']);
-// Route::resource('/feedbacks', FeedbacksController::class);
 
-Route::resource('/listings', ListingsController::class);
+Route::get('/listings', [ListingsController::class, 'index']);
+Route::get('/listings/{listing}', [ListingsController::class, 'show']);
+
 Route::get('/', [ListingsController::class, 'home'])->name('home');
 Route::get('/denyAccess', [UserController::class, 'denyAccess'])->name('users.denyAccess');
 
@@ -63,8 +64,8 @@ Route::middleware('auth')->group(function () {
 
     // User feedbacks
     Route::post('/feedbacks', [FeedbacksController::class, 'store']);
-    Route::put('/feedbacks/{user}', [FeedbacksController::class, 'update']);
-    Route::delete('/feedbacks/{user}', [FeedbacksController::class, 'destroy']);
+    Route::put('/feedbacks/{feedback}', [FeedbacksController::class, 'update']);
+    Route::delete('/feedbacks/{feedback}', [FeedbacksController::class, 'destroy']);
 });
 // --------------------------------------------------------------------------
 
