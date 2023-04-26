@@ -16,9 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');   // cascade remove all belonged list when delete
-            $table->foreignId('listing_id')->constrained()->onDelete('cascade');   // cascade remove all belonged list when delete
-            $table->double('price');
-            $table->integer('amount');
+            $table->foreignId('cart_id')->constrained()->onDelete('cascade');   // cascade remove all belonged list when delete
 
             $table->timestamps();
         });
