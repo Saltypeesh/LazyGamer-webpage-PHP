@@ -77,7 +77,6 @@
 
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                 <input type="hidden" name="listing_id" value="{{ $cart->listing->id }}">
-                                <input type="hidden" name="price" value="{{ $cart->listing->price }}">
                                 <input type="hidden" name="amount" value="{{ $cart->amount }}">
                             </form>
 
