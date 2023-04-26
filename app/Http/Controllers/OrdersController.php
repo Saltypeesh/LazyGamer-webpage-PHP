@@ -22,6 +22,16 @@ class OrdersController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -30,17 +40,62 @@ class OrdersController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'cart_id' => 'required'
+            'user_id' => 'required',
+            'listing_id' => 'required',
+            'amount' => 'required'
         ]);
-        $formFields['user_id'] = auth()->id();
         
         Order::create($formFields);
 
-        // $user = User::find(auth()->id());
-        // $listing = Listing::find($request->listing_id);
-        // $listing->carts()->detach($user);
-        
+        $user = User::find(auth()->id());
+        $listing = Listing::find($request->listing_id);
+        $listing->carts()->detach($user);
         
         return redirect()->route('home')->with('message', 'Order has been placed!');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

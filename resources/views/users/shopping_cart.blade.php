@@ -74,7 +74,10 @@
 
                             <form class="allforms" name="order" action="/users/orders" method="POST">
                                 @csrf
-                                <input type="hidden" name="cart_id" value="{{ $cart->id }}">
+
+                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                <input type="hidden" name="listing_id" value="{{ $cart->listing->id }}">
+                                <input type="hidden" name="amount" value="{{ $cart->amount }}">
                             </form>
 
                             @php
