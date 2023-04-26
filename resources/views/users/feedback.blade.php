@@ -31,8 +31,8 @@
                                         <div class="feedback-action">
                                             <button type="button" class="btn edit-feedback"
                                                 id="feedback_{{ $feedback->user_id }}">Edit</button>
-                                            <form action="/feedbacks/{{ $feedback->id }}" method="POST">
 
+                                            <form action="/feedbacks/{{ $feedback->id }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn" type="submit">Delete</button>
