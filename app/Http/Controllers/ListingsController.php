@@ -128,7 +128,6 @@ class ListingsController extends Controller
             'tags' => self::arrayToString($request->tags)
         ]);
 
-
         $formFields = $request->validate([
             'title' => 'required',
             'price' => 'required|numeric|between:0.99,199.99',
@@ -140,14 +139,11 @@ class ListingsController extends Controller
         if ($request->hasFile('banner')) {
             $formFields['banner'] = $request->file('banner')->store('banners', 'public');
         }
-
         if ($request->hasFile('background')) {
             $formFields['background'] = $request->file('background')->store('backgrounds', 'public');
         }
 
         $listing->update($formFields);
-
-
 
         return redirect()->route('admin.manage')->with('message', 'Listing updated successfully!');
     }
