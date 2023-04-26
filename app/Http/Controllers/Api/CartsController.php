@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Cart;
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ use App\Http\Requests\StoreCartRequest;
 
 class CartsController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +52,13 @@ class CartsController extends Controller
      */
     public function show(Cart $cart)
     {
-        return $this->isNotAuthorized($cart) ? $this->isNotAuthorized($cart) :  new CartsResource($cart);
+
+
+        if (Auth::user()->id !== $cart->user_id) {
+            return $this->error('', 'You are not authorized to make this request', 403);
+        }
+
+        return new CartsResource($cart);
     }
 
     /**

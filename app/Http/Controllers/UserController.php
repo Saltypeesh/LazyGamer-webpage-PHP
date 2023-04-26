@@ -58,7 +58,6 @@ class UserController extends Controller
 
     public function toAdmin(Request $request, User $user)
     {
-
         if ($user->role != 'customer') {
             return back()->with('message', 'User is already admin');
         } else {

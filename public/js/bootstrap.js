@@ -39,7 +39,7 @@ $(document).ready(function () {
             });
         });
     });
-    
+
     $(".edit-feedback").click(function () {
         var id = $(this).attr('id');
         $('.feedback-action').hide(300);

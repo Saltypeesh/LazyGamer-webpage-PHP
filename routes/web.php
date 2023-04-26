@@ -21,14 +21,17 @@ use App\Http\Controllers\FeedbacksController;
 
 // **Public route**
 Auth::routes();
-Route::resource('/feedbacks', FeedbacksController::class);
+
+Route::get('/feedbacks', [FeedbacksController::class, 'index']);
+// Route::resource('/feedbacks', FeedbacksController::class);
+
 Route::resource('/listings', ListingsController::class);
 Route::get('/', [ListingsController::class, 'home'])->name('home');
 Route::get('/denyAccess', [UserController::class, 'denyAccess'])->name('users.denyAccess');
 
-Route::get('/terms_of_Use',[UserController::class, 'terms_of_Use'])->name('terms_of_Use');
-Route::get('/privacy_Policy',[UserController::class, 'privacy_Policy'])->name('privacy_Policy');
-Route::get('/faq',[UserController::class, 'faq'])->name('faq');
+Route::get('/terms_of_Use', [UserController::class, 'terms_of_Use'])->name('terms_of_Use');
+Route::get('/privacy_Policy', [UserController::class, 'privacy_Policy'])->name('privacy_Policy');
+Route::get('/faq', [UserController::class, 'faq'])->name('faq');
 
 Route::middleware('guest')->group(function () {
     // Show Register/Create Form
@@ -57,6 +60,11 @@ Route::middleware('auth')->group(function () {
     // User orders
     Route::get('/users/orders', [OrdersController::class, 'index']);
     Route::post('/users/orders', [OrdersController::class, 'store']);
+
+    // User feedbacks
+    Route::post('/feedbacks', [FeedbacksController::class, 'store']);
+    Route::put('/feedbacks/{user}', [FeedbacksController::class, 'update']);
+    Route::delete('/feedbacks/{user}', [FeedbacksController::class, 'destroy']);
 });
 // --------------------------------------------------------------------------
 

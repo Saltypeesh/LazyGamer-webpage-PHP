@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Feedback;
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFeedbackRequest;
@@ -11,6 +12,7 @@ use App\Http\Resources\FeedbacksResource;
 
 class FeedbacksController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      *
