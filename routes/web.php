@@ -27,6 +27,8 @@ Route::get('/feedbacks', [FeedbacksController::class, 'index']);
 Route::get('/listings', [ListingsController::class, 'index']);
 Route::get('/listings/{listing}', [ListingsController::class, 'show']);
 
+Route::resource('/platforms', PlatformsController::class);
+
 Route::get('/', [ListingsController::class, 'home'])->name('home');
 Route::get('/denyAccess', [UserController::class, 'denyAccess'])->name('users.denyAccess');
 
@@ -66,6 +68,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/feedbacks', [FeedbacksController::class, 'store']);
     Route::put('/feedbacks/{feedback}', [FeedbacksController::class, 'update']);
     Route::delete('/feedbacks/{feedback}', [FeedbacksController::class, 'destroy']);
+    
+    // Platform list
+    Route::get('/users/platforms', [PlatformsController::class, 'index'])->name('platforms.index');
+    Route::get('/users/platforms/{platform}', [PlatformsController::class, 'show'])->name('platforms.show');
 });
 // --------------------------------------------------------------------------
 
@@ -81,6 +87,13 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
 
     // Manage Listings
     Route::get('/admin/manage', [UserController::class, 'manage'])->name('admin.manage');
+    
+    // Platform CRUD
+    Route::get('/admin/platforms/create', [PlatformsController::class, 'create'])->name('platforms.create');
+    Route::post('/admin/platforms', [PlatformsController::class, 'store'])->name('platforms.store');
+    Route::get('/admin/platforms/{platform}/edit',[PlatformsController::class, 'edit'])->name('platforms.edit');
+    Route::put('/admin/platforms/{platform}',[PlatformsController::class, 'update'])->name('platforms.update');
+    Route::delete('/admin/platforms/{platform}', [PlatformsController::class, 'destroy'])->name('platforms.delete');
 });
 
 // **User Route**
