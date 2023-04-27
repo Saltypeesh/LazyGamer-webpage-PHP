@@ -41,10 +41,7 @@ $(document).ready(function () {
     });
 
     $(".edit-feedback").click(function () {
-        // var id = $(this).attr('id');
         var id = $(this).data('feedback');
-
-        console.log(id);
         
         $('#feedback-action_' + id).hide(300);
         $('#feedback-action_edit_'+id).show(300);
@@ -54,6 +51,7 @@ $(document).ready(function () {
 
     $(".cancel-feedback").click(function () {
         var id = $(this).data('feedback');
+        
         $('#feedback-action_' + id).show(300);
         $('#feedback-action_edit_'+id).hide(300);
         $('#p_feedback_' + id).show(300);
