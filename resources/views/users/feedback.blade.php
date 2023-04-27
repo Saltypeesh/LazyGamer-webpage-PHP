@@ -24,13 +24,14 @@
 
                         <div class="col-9 col-sm-10 col-md-11">
                             <div class="feedback-content">
-                                <p id="feedback_{{ $feedback->user_id }}">{{ $feedback->content }}</p>
+                                <p id="p_feedback_{{ $feedback->id }}">{{ $feedback->content }}</p>
 
                                 @auth
                                     @if ($feedback->user_id == auth()->user()->id)
-                                        <div class="feedback-action">
+                                        <div id="feedback-action_{{ $feedback->id }}" class="feedback-action">
                                             <button type="button" class="btn edit-feedback"
-                                                id="feedback_{{ $feedback->user_id }}">Edit</button>
+                                                data-feedback="{{ $feedback->id }}"
+                                                id="feedback_{{ $feedback->id }}">Edit</button>
 
                                             <form action="/feedbacks/{{ $feedback->id }}" method="POST">
                                                 @csrf
@@ -40,15 +41,17 @@
                                         </div>
 
                                         <form action="/feedbacks/{{ $feedback->id }}" method="POST">
-                                            <textarea name="content" id="feedback_{{ $feedback->user_id }}" style="display: none" rows="3">{{ $feedback->content }}</textarea>
-                                            <div class="feedback-action_edit" style="display: none">
+                                            <textarea name="content" id="textarea_feedback_{{ $feedback->id }}" style="display: none" rows="3">{{ $feedback->content }}</textarea>
+                                            <div id="feedback-action_edit_{{ $feedback->id }}"
+                                                class="feedback-action_edit" style="display: none">
                                                 @csrf
                                                 @method('PUT')
 
                                                 <button class="btn" type="submit">Update</button>
 
                                                 <button type="button" class="btn cancel-feedback"
-                                                    id="feedback_{{ $feedback->user_id }}">Cancel</button>
+                                                    data-feedback="{{ $feedback->id }}"
+                                                    id="feedback_{{ $feedback->id }}">Cancel</button>
                                             </div>
                                         </form>
                                     @endif
