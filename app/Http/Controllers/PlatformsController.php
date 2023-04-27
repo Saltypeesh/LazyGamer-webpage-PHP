@@ -12,7 +12,8 @@ class PlatformsController extends Controller
      */
     public function index()
     {
-        return view('platforms.index', ['platform' => Platform::latest()->paginate(6)]);
+        $platforms = Platform::latest()->paginate(6);
+        return view('platforms.index', compact('platforms'));
     }
 
     /**
@@ -38,7 +39,8 @@ class PlatformsController extends Controller
      */
     public function show(Platform $platform)
     {
-        return view('platforms.view', ['platform' => $platform]);
+
+        return view('platforms.show', ['platform' => $platform]);
     }
 
     /**
@@ -46,7 +48,7 @@ class PlatformsController extends Controller
      */
     public function edit(Platform $platform)
     {
-        return view('platforms.edit', ['platform' => $platform]);
+        return view('platforms.edit', compact('platform'));
     }
 
     /**
@@ -54,11 +56,11 @@ class PlatformsController extends Controller
      */
     public function update(Request $request, Platform $platform)
     {
-        $platform = $request->validate([
+        $request = $request->validate([
             'platname' => 'required|string|max:50'
         ]);
-        Platform::create($platform);
-        return back()->with('message', 'Platform updated successfully!');
+        $platform->update($request);
+        return redirect('/platforms')->with('message', 'Platform updated successfully!');
     }
 
     /**
@@ -67,6 +69,6 @@ class PlatformsController extends Controller
     public function destroy(Platform $platform)
     {
         $platform->delete();
-        return back()->with('message', 'Platform updated successfully!');
+        return redirect('/platforms')->with('message', 'Platform deleted successfully!');
     }
 }
