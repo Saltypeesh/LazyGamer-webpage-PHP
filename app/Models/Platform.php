@@ -12,4 +12,8 @@ class Platform extends Model
     protected $table='platforms';
     protected $primaryKey ='id';
     protected $fillable =['platname'];
+    
+    public function listing(){
+        return $this->belongsTo(Listing::class,'plat_id');
+    }
 }
