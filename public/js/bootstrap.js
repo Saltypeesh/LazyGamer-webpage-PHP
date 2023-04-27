@@ -41,18 +41,22 @@ $(document).ready(function () {
     });
 
     $(".edit-feedback").click(function () {
-        var id = $(this).attr('id');
-        $('.feedback-action').hide(300);
-        $('.feedback-action_edit').show(300);
-        $('p#' + id).hide(300);
-        $('textarea#' + id).show(300).focus();
+        // var id = $(this).attr('id');
+        var id = $(this).data('feedback');
+
+        console.log(id);
+        
+        $('#feedback-action_' + id).hide(300);
+        $('#feedback-action_edit_'+id).show(300);
+        $('#p_feedback_' + id).hide(300);
+        $('#textarea_feedback_' + id).show(300).focus();
     });
 
     $(".cancel-feedback").click(function () {
-        var id = $(this).attr('id');
-        $('.feedback-action').show(300);
-        $('.feedback-action_edit').hide(300);
-        $('p#' + id).show(300);
-        $('textarea#' + id).hide(300).focus();
+        var id = $(this).data('feedback');
+        $('#feedback-action_' + id).show(300);
+        $('#feedback-action_edit_'+id).hide(300);
+        $('#p_feedback_' + id).show(300);
+        $('#textarea_feedback_' + id).hide(300).focus();
     });
 });
