@@ -7,7 +7,7 @@ use App\Http\Controllers\CartsController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ListingsController;
 use App\Http\Controllers\FeedbacksController;
-
+use App\Http\Controllers\PlatformsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
